@@ -1,0 +1,27 @@
+{
+  "name": "nunjucks-component-extension",
+  "version": "0.0.1",
+  "description": "support pass data for nunjucks widget",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sm-bugu/nunjucks-component-extension.git"
+  },
+  "keywords": [
+    "nunjucks",
+    "widget",
+    "pass-data"
+  ],
+  "author": "mingzhi22",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sm-bugu/nunjucks-component-extension/issues"
+  },
+  "homepage": "https://github.com/sm-bugu/nunjucks-component-extension",
+  "dependencies": {
+    "nunjucks": "^3.0.0"
+  }
+}
