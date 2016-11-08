@@ -3,6 +3,28 @@ nunjucks-component-extension
 
 nunjucks plugin for pass data
 
+## install
+
+```
+npm install nunjucks-component-extension --save
+```
+
+## use case
+
+```js
+var nunjucks = require('nunjucks');
+var env = new nunjucks.configure(config.cwd);
+
+env.addExtension('ComponentExtension', require('nunjucks-component-extension'));
+
+nunjucks.render('index.html', (err, str) => {
+    console.log(str);
+})
+```
+
+## ex.
+
+
 index.html:
 
 ```html
