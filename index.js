@@ -17,6 +17,11 @@ ComponentExtension.prototype = {
     },
 
     run: function (context, data, args) {
+        if (typeof args === 'undefined') {
+            args = data;
+            data = undefined;
+        }
+
         var file = args.file;
 
         return new nunjucks.runtime.SafeString(nunjucks.render(file, data));
