@@ -1,6 +1,7 @@
 "use strict";
 
 var nunjucks = require('nunjucks');
+var fs = require('fs');
 
 function ComponentExtension() {
     this.tags = ['component'];
@@ -23,6 +24,10 @@ ComponentExtension.prototype = {
         }
 
         var file = args.file;
+
+        if (!fs.statSync(file)) {
+            throw new Error('文件不存在，检查是否使用的是相对路径，若是，则要改为相对于模板根目录的路径');
+        }
 
         return new nunjucks.runtime.SafeString(nunjucks.render(file, data));
     }
