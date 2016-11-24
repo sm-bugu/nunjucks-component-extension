@@ -26,11 +26,16 @@ ComponentExtension.prototype = {
 
         var file = args.file;
 
-        if (!fs.existsSync(file)) {
-            result = '"' + file + '" 文件不存在，检查是否使用的是相对路径，若是，则要改为相对于模板根目录的路径';
-            console.error(result);
-        } else {
+        try {
             result = nunjucks.render(file, data);
+        } catch(e) {
+            if(e.message.indexOf('template not found') > -1) {
+                result = '"' + file + '" 不存在, 请写相对于项目的路径。如：shortcuts/xxxxxxxxxx';
+            } else {
+                result = e.message;
+            }
+            
+            console.error(result);
         }
 
         return new nunjucks.runtime.SafeString(result);
