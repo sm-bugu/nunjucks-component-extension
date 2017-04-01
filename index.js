@@ -5,7 +5,7 @@ const fs = require('fs');
 
 class ComponentExtension {
 
-    constructor(height, width) {
+    constructor() {
         this.tags = ['component'];
     }
 

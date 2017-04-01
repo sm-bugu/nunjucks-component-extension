@@ -12,8 +12,8 @@ npm install nunjucks-component-extension --save
 ## use case
 
 ```js
-var nunjucks = require('nunjucks');
-var env = new nunjucks.configure(config.cwd);
+const nunjucks = require('nunjucks');
+const env = new nunjucks.configure(config.cwd);
 
 env.addExtension('ComponentExtension', require('nunjucks-component-extension'));
 
