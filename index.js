@@ -26,16 +26,20 @@ ComponentExtension.prototype = {
 
         var file = args.file;
 
-        try {
-            result = nunjucks.render(file, data);
-        } catch(e) {
-            if(e.message.indexOf('template not found') > -1) {
-                result = '"' + file + '" 不存在, 请写相对于项目的路径。如：shortcuts/xxxxxxxxxx';
-            } else {
-                result = e.message;
+        if(args.disable === true) {
+            result = '';
+        } else {
+            try {
+                result = nunjucks.render(file, data);
+            } catch(e) {
+                if(e.message.indexOf('template not found') > -1) {
+                    result = '"' + file + '" 不存在, 请写相对于项目的路径。如：shortcuts/xxxxxxxxxx';
+                } else {
+                    result = e.message;
+                }
+
+                console.error(result);
             }
-            
-            console.error(result);
         }
 
         return new nunjucks.runtime.SafeString(result);
