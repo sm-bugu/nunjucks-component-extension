@@ -1,49 +1,46 @@
 "use strict";
 
-var nunjucks = require('nunjucks');
-var fs = require('fs');
+const nunjucks = require('nunjucks');
+const fs = require('fs');
 
-function ComponentExtension() {
-    this.tags = ['component'];
-}
+class ComponentExtension {
 
-ComponentExtension.prototype = {
-    parse: function (parser, nodes) {
-        var tok = parser.nextToken(),
-            args = parser.parseSignature(null, true);
+    constructor(height, width) {
+        this.tags = ['component'];
+    }
+
+    parse(parser, nodes) {
+        const tok = parser.nextToken();
+        const args = parser.parseSignature(null, true); 
 
         parser.advanceAfterBlockEnd(tok.value);
 
         return new nodes.CallExtension(this, 'run', args);
-    },
+    }
 
-    run: function (context, data, args) {
-        var result = '';
+    run(context, data, args) {
         if (typeof args === 'undefined') {
             args = data;
             data = undefined;
         }
 
-        var file = args.file;
+        let result = '';
+        let file = args.file;
 
-        if(args.disable === true) {
-            result = '';
-        } else {
-            try {
-                result = nunjucks.render(file, data);
-            } catch(e) {
-                if(e.message.indexOf('template not found') > -1) {
-                    result = '"' + file + '" 不存在, 请写相对于项目的路径。如：shortcuts/xxxxxxxxxx';
-                } else {
-                    result = e.message;
-                }
-
-                console.error(result);
+        try {
+            result = nunjucks.render(file, data);
+        } catch(e) {
+            if(e.message.indexOf('template not found') > -1) {
+                result = '404, file not found';
+            } else {
+                result = e.message;
             }
+
+            console.error('"' + file + '" 不存在, 请写相对于项目的路径。如：shortcuts/xxxxxxxxxx');
         }
 
         return new nunjucks.runtime.SafeString(result);
     }
-};
+}
 
 module.exports = new ComponentExtension();

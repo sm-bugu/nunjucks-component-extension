@@ -1,0 +1,16 @@
+<html>
+<head>
+	<title>test component</title>
+</head>
+<body>
+	{%
+		set obj = {
+			name: 'Michael',
+			corp: 'Alibaba',
+			dep: '神马搜索'
+		}
+	%}
+
+	{% component file="sub.html", obj%}
+</body>
+</html>
