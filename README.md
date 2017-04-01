@@ -52,7 +52,3 @@ sub.html:
 <p>姓名： {{name}}</p>
 <p>公司： {{corp}}</p>
 ```
-
-如果不想渲染，加入 disable 属性
-
-{% component file="sub.html" disable="true", obj%}
