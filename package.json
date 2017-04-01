@@ -1,6 +1,6 @@
 {
   "name": "nunjucks-component-extension",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "support pass data for nunjucks widget",
   "main": "index.js",
   "scripts": {
